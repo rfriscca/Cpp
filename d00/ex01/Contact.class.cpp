@@ -1,46 +1,82 @@
 #include <iostream>
 #include "Contact.class.hpp"
 
+bool	Contact::isNotEmpty(void) {
+	if (Contact::firstname.length() || Contact::lastname.length() || Contact::nickname.length()) {
+		return 1;
+	}
+	else {
+		return 0;
+	}
+}
+
+void	Contact::displayInfo(void) {
+	std::cout << "Firstname       : " << Contact::firstname << std::endl;
+	std::cout << "Lastname        : " << Contact::lastname << std::endl;
+	std::cout << "Nickname        : " << Contact::nickname << std::endl;
+	std::cout << "Login           : " << Contact::login << std::endl;
+	std::cout << "Postal Address  : " << Contact::postaladdress << std::endl;
+	std::cout << "Email           : " << Contact::email << std::endl;
+	std::cout << "Phone Number    : " << Contact::phonenumber << std::endl;
+	std::cout << "Birthday        : " << Contact::birthday << std::endl;
+	std::cout << "Favorite Meal   : " << Contact::favmeal << std::endl;
+	std::cout << "Underwear Color : " << Contact::underwearcolor << std::endl;
+	std::cout << "Darkest Secret  : " << Contact::darkestsecret << std::endl;
+}
+
 void	Contact::displaySummaryInfo(void) {
 	int		i = 0;
-	
+	int		index = 0;
+	int		numberofspaces = 0;
+
+	numberofspaces = 10 - Contact::firstname.length();
 	while (i < 10) {
-		if (i == 9 && Contact::firstname[10]) {
-			std::cout << '.';
+		if (numberofspaces > 0) {
+			std::cout << " ";
+			--numberofspaces;
 		}
-		else if (Contact::firstname[i]) {
-			std::cout << Contact::firstname[i];
+		else if (numberofspaces < 0 && i == 9) {
+			std::cout << ".";
 		}
 		else {
-			std::cout << " ";
+			std::cout << Contact::firstname[index];
+			++index;
 		}
 		++i;
 	}
 	std::cout << "|";
+	numberofspaces = 10 - Contact::lastname.length();
+	index = 0;
 	i = 0;
 	while (i < 10) {
-		if (i == 9 && Contact::lastname[10]) {
-			std::cout << '.';
+		if (numberofspaces > 0) {
+			std::cout << " ";
+			--numberofspaces;
 		}
-		else if (Contact::lastname[i]) {
-			std::cout << Contact::lastname[i];
+		else if (numberofspaces < 0 && i == 9) {
+			std::cout << ".";
 		}
 		else {
-			std::cout << " ";
+			std::cout << Contact::lastname[index];
+			++index;
 		}
 		++i;
 	}
 	std::cout << "|";
+	numberofspaces = 10 - Contact::nickname.length();
+	index = 0;
 	i = 0;
 	while (i < 10) {
-		if (i == 9 && Contact::nickname[10]) {
-			std::cout << '.';
+		if (numberofspaces > 0) {
+			std::cout << " ";
+			--numberofspaces;
 		}
-		else if (Contact::nickname[i]) {
-			std::cout << Contact::nickname[i];
+		else if (numberofspaces < 0 && i == 9) {
+			std::cout << ".";
 		}
 		else {
-			std::cout << " ";
+			std::cout << Contact::nickname[index];
+			++index;
 		}
 		++i;
 	}
@@ -48,6 +84,10 @@ void	Contact::displaySummaryInfo(void) {
 }
 
 Contact::Contact(void) {
+	return ;
+}
+
+void Contact::addContact(void) {
 	std::cout << "First name : ";
 	std::cin >> Contact::firstname;
 	

@@ -2,22 +2,42 @@
 #include "Contact.class.hpp"
 #include <iostream>
 
-#define MAX_CONTACT 2
+#define MAX_CONTACT 8
 
 void	showContacts(Contact *mylist) {
-	int		i = 0;
+	int		i = 1;
+	int 	index = 0;
 	
-	std::cout << "index     |first name|last name |nickname  " << std::endl;
-
-	while (i < MAX_CONTACT) {
-		std::cout << i << "         |";
-		mylist[i].displaySummaryInfo();
+	std::cout << "     index| firstname|  lastname|  nickname" << std::endl;
+	
+	//i = 1 so we need to use i - 1
+	while (i - 1 < MAX_CONTACT && mylist[i - 1].isNotEmpty()) {
+		std::cout << "         " << i << "|";
+		mylist[i - 1].displaySummaryInfo();
 		++i;
 	}
+	if (mylist[0].isNotEmpty()) {
+		std::cout << "Choose the index of contact you want to display info : ";
+		if (std::cin >> index) {
+			//index - 1 because user will see and enter a number between 1 and 8
+			if (index < 9 && index > 0 && mylist[index - 1].isNotEmpty()) {
+				mylist[index - 1].displayInfo();
+			}
+			else {	
+				std::cout << "You entered an invalid value !" << std::endl;
+			}
+		}
+		else {
+			std::cin.clear();
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cout << "You entered an invalid value !" << std::endl;
+		}
+	}
+	return ;
 }
 
 int		main() {
-	Contact		*mylist = (Contact*)malloc(sizeof(Contact) * MAX_CONTACT);
+	Contact		mylist[MAX_CONTACT];
 	int			i;
 	std::string	command;
 
@@ -26,8 +46,7 @@ int		main() {
 		std::cout << "Type your command : ";
 		std::cin >> command;
 		if (!command.compare("ADD") && i < MAX_CONTACT) {
-			Contact newcontact;
-			mylist[i] = newcontact;
+			mylist[i].addContact();
 			++i;
 		}
 		else if (!command.compare("ADD") && i >= MAX_CONTACT) {

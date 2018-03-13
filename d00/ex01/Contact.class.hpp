@@ -8,9 +8,10 @@ class Contact {
 	public :
 		Contact(void);
 		~Contact(void);
-		static int	getNumberOfContacts(void);
+		void		addContact(void);
 		void		displayInfo(void);
 		void		displaySummaryInfo(void);
+		bool		isNotEmpty(void);
 
 	private :
 		std::string	firstname;
