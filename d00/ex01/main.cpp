@@ -30,6 +30,8 @@ void	showContacts(Contact *mylist) {
 		else {
 			std::cin.clear();
 			//if input wasn't a number then ignore it
+			//std::streamsize is the size of an I/O buffer check std::streamsize documentation for more info
+			//std::numeric_limits<>::max() returns the size of the specified type in our case it returns the maximum value of std::streamsize
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::cout << "You entered an invalid value !" << std::endl;
 		}
