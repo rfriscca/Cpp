@@ -29,6 +29,7 @@ void	showContacts(Contact *mylist) {
 		}
 		else {
 			std::cin.clear();
+			//if input wasn't a number then ignore it
 			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 			std::cout << "You entered an invalid value !" << std::endl;
 		}
